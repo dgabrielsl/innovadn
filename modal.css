@@ -1,0 +1,321 @@
+/* ============================================================
+   project-modal — componente de caso de estudio
+   InnovADN · namespace: .project-modal
+   Reutiliza las variables de la landing (style.css) cuando
+   existen, con un valor de respaldo para poder usarse solo.
+   ============================================================ */
+
+.project-modal{
+  --pm-bg: var(--bg, #0b0b0c);
+  --pm-surface: var(--surface, #17171a);
+  --pm-surface-2: var(--surface-2, #1e1e22);
+  --pm-border: var(--border, #2a2a2e);
+  --pm-border-strong: var(--border-strong, #3a3a3f);
+  --pm-text: var(--text, #f3f2ee);
+  --pm-text-muted: var(--text-muted, #a6a5a2);
+  --pm-text-faint: var(--text-faint, #706f6c);
+  --pm-accent: var(--accent, #e0334b);
+  --pm-accent-bright: var(--accent-bright, #ff5468);
+  --pm-font-display: var(--font-display, "Sora", system-ui, sans-serif);
+  --pm-font-body: var(--font-body, "Inter", system-ui, sans-serif);
+  --pm-font-mono: var(--font-mono, "JetBrains Mono", ui-monospace, monospace);
+  --pm-radius: 8px;
+
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.project-modal[hidden]{ display: none; }
+
+/* Overlay */
+.project-modal__overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 6, 7, 0.78);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+
+/* Dialog panel */
+.project-modal__dialog{
+  position: relative;
+  z-index: 1;
+  width: min(880px, calc(100% - 2.5rem));
+  max-height: min(88vh, 900px);
+  margin: min(6vh, 4rem) auto 2rem;
+  background: var(--pm-surface);
+  border: 1px solid var(--pm-border);
+  border-radius: var(--pm-radius);
+  box-shadow: 0 30px 70px rgba(0,0,0,.55);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: var(--pm-font-body);
+  color: var(--pm-text);
+  opacity: 0;
+  transform: translateY(14px) scale(.98);
+  transition: opacity .22s ease, transform .22s ease;
+}
+
+/* Open state — toggled by modal.js one frame after removing [hidden] */
+.project-modal.is-open .project-modal__overlay{ opacity: 1; }
+.project-modal.is-open .project-modal__dialog{ opacity: 1; transform: translateY(0) scale(1); }
+
+@media (prefers-reduced-motion: reduce){
+  .project-modal__overlay,
+  .project-modal__dialog{ transition: none; }
+}
+
+/* Scrollable wrapper for the whole modal (handles small viewports) */
+.project-modal{
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Header */
+.project-modal__header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1.75rem 1.25rem;
+  border-bottom: 1px solid var(--pm-border);
+  position: sticky;
+  top: 0;
+  background: var(--pm-surface);
+  z-index: 1;
+}
+.project-modal__eyebrow{
+  font-family: var(--pm-font-mono);
+  font-size: .76rem;
+  color: var(--pm-accent-bright);
+  margin: 0 0 .4rem;
+}
+.project-modal__title{
+  font-family: var(--pm-font-display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--pm-text);
+}
+.project-modal__close{
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: var(--pm-text-muted);
+  border: 1px solid var(--pm-border-strong);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+.project-modal__close:hover{
+  color: var(--pm-accent-bright);
+  border-color: var(--pm-accent-bright);
+}
+
+/* Body */
+.project-modal__body{
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+.project-modal__desc{
+  color: var(--pm-text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+
+.project-modal__section-title{
+  font-family: var(--pm-font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 1rem;
+  color: var(--pm-text);
+}
+
+/* Metrics */
+.project-modal__metrics{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--pm-border);
+  border: 1px solid var(--pm-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.project-modal__metric{
+  background: var(--pm-bg);
+  padding: 1.1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  text-align: center;
+}
+.project-modal__metric-value{
+  font-family: var(--pm-font-display);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 700;
+  color: var(--pm-accent-bright);
+}
+.project-modal__metric-label{
+  font-size: .8rem;
+  color: var(--pm-text-muted);
+}
+
+/* Two-column sections: buenas prácticas / tecnologías */
+.project-modal__columns{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.project-modal__list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.project-modal__list li{
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--pm-text-muted);
+  font-size: .93rem;
+}
+.project-modal__list li::before{
+  content: "";
+  position: absolute;
+  left: 0; top: .55em;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--pm-accent-bright);
+}
+
+.project-modal__tech-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+.project-modal__tech-list li{
+  font-family: var(--pm-font-mono);
+  font-size: .78rem;
+  color: var(--pm-text-muted);
+  border: 1px solid var(--pm-border-strong);
+  border-radius: 999px;
+  padding: .4rem .85rem;
+}
+
+/* Gallery */
+.project-modal__gallery{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: .85rem;
+}
+.project-modal__shot{
+  margin: 0;
+  aspect-ratio: 16/10;
+  border: 1px dashed var(--pm-border-strong);
+  border-radius: 6px;
+  background: var(--pm-surface-2);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.project-modal__shot span{
+  font-family: var(--pm-font-mono);
+  font-size: .72rem;
+  color: var(--pm-text-faint);
+}
+.project-modal__shot img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Resources */
+.project-modal__resources{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--pm-border);
+  border: 1px solid var(--pm-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.project-modal__resource{
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  background: var(--pm-bg);
+  padding: 1rem 1.1rem;
+  color: var(--pm-text);
+  text-decoration: none;
+  transition: background-color .15s ease;
+}
+.project-modal__resource:hover{ background: var(--pm-surface-2); }
+.project-modal__resource-icon{
+  flex-shrink: 0;
+  width: 38px; height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--pm-border-strong);
+  border-radius: 6px;
+  color: var(--pm-accent-bright);
+}
+.project-modal__resource-text{ display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
+.project-modal__resource-label{ font-weight: 600; font-size: .92rem; }
+.project-modal__resource-value{ font-size: .8rem; color: var(--pm-text-faint); }
+
+/* Focus visibility inside the modal */
+.project-modal :focus-visible{
+  outline: 2px solid var(--pm-accent-bright);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ============================================================
+   Responsive — reestructura, no solo reduce
+   ============================================================ */
+@media (max-width: 680px){
+  .project-modal__dialog{
+    width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+  }
+  .project-modal__header{ padding: 1.1rem 1.1rem 1rem; }
+  .project-modal__body{ padding: 1.1rem 1.1rem 2rem; gap: 1.75rem; }
+  .project-modal__columns{ grid-template-columns: 1fr; gap: 1.5rem; }
+  .project-modal__metrics{ grid-template-columns: 1fr; }
+  .project-modal__metric{
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    padding: .9rem 1rem;
+  }
+  .project-modal__resources{ grid-template-columns: 1fr; }
+  .project-modal__gallery{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Bloquea el scroll del documento mientras el modal está abierto */
+html.project-modal-lock,
+html.project-modal-lock body{
+  overflow: hidden;
+  height: 100%;
+}
