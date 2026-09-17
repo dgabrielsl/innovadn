@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InnovADN — El ADN de tu negocio, convertido en software</title>
+<title>InnovADN</title>
 <meta name="description" content="InnovADN desarrolla software a medida, aplicaciones web y de escritorio, integraciones y automatización de procesos para hacer crecer tu negocio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="index.css">
-<link rel="stylesheet" href="modal.css">
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/modal.css">
+<link rel="stylesheet" href="css/viewer.css">
 </head>
 <body>
 
@@ -490,14 +491,24 @@
         <h3 class="project-modal__section-title">Capturas del proceso</h3>
         <!-- Reemplaza cada <figure> por la captura real:
              <figure class="project-modal__shot">
-               <img src="ruta/captura-1.jpg" alt="Descripción de la pantalla">
+               <img src="src/.png" alt="Descripción de la pantalla">
              </figure> -->
         <div class="project-modal__gallery">
-          <figure class="project-modal__shot"><span>[Captura 1]</span></figure>
-          <figure class="project-modal__shot"><span>[Captura 2]</span></figure>
-          <figure class="project-modal__shot"><span>[Captura 3]</span></figure>
-          <figure class="project-modal__shot"><span>[Captura 4]</span></figure>
-          <figure class="project-modal__shot"><span>[Captura 5]</span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/1-ss1.png" alt="Descripción de la pantalla">
+          </span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/1-ss2.png" alt="Descripción de la pantalla">
+          </span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/1-ss3.png" alt="Descripción de la pantalla">
+          </span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/1-ss4.png" alt="Descripción de la pantalla">
+          </span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/1-ss5.png" alt="Descripción de la pantalla">
+          </span></figure>
         </div>
       </section>
 
@@ -626,14 +637,24 @@
         <h3 class="project-modal__section-title">Capturas del proceso</h3>
         <!-- Reemplaza cada <figure> por la captura real:
              <figure class="project-modal__shot">
-               <img src="ruta/captura-1.jpg" alt="Descripción de la pantalla">
+               <img src="src/default.png" alt="Descripción de la pantalla">
              </figure> -->
         <div class="project-modal__gallery">
-          <figure class="project-modal__shot"><span>[Captura 1]</span></figure>
-          <figure class="project-modal__shot"><span>[Captura 2]</span></figure>
-          <figure class="project-modal__shot"><span>[Captura 3]</span></figure>
-          <figure class="project-modal__shot"><span>[Captura 4]</span></figure>
-          <figure class="project-modal__shot"><span>[Captura 5]</span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/default.png" alt="Descripción de la pantalla">
+          </span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/default.png" alt="Descripción de la pantalla">
+          </span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/default.png" alt="Descripción de la pantalla">
+          </span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/default.png" alt="Descripción de la pantalla">
+          </span></figure>
+          <figure class="project-modal__shot"><span>
+            <img src="src/default.png" alt="Descripción de la pantalla">
+          </span></figure>
         </div>
       </section>
 
@@ -762,7 +783,7 @@
         <h3 class="project-modal__section-title">Capturas del proceso</h3>
         <!-- Reemplaza cada <figure> por la captura real:
              <figure class="project-modal__shot">
-               <img src="ruta/captura-1.jpg" alt="Descripción de la pantalla">
+               <img src="src/.png" alt="Descripción de la pantalla">
              </figure> -->
         <div class="project-modal__gallery">
           <figure class="project-modal__shot"><span>[Captura 1]</span></figure>
@@ -815,6 +836,35 @@
   </div>
 </div>
 
-<script src="modal.js"></script>
+<div class="project-image-viewer" id="project-image-viewer" hidden>
+  <div class="project-image-viewer__overlay" data-viewer-close></div>
+
+  <div
+    class="project-image-viewer__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Imagen ampliada"
+    tabindex="-1"
+  >
+    <button
+      type="button"
+      class="project-image-viewer__close"
+      data-viewer-close
+      aria-label="Cerrar imagen ampliada"
+    >
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M6 6l12 12M18 6 6 18"/>
+      </svg>
+    </button>
+
+    <figure class="project-image-viewer__figure">
+      <img class="project-image-viewer__image" src="" alt="">
+      <figcaption class="project-image-viewer__caption"></figcaption>
+    </figure>
+  </div>
+</div>
+
+<script src="js/modal.js"></script>
+<script src="js/viewer.js"></script>
 </body>
 </html>

@@ -260,7 +260,7 @@ ul{ list-style: none; margin: 0; padding: 0; }
   grid-template-columns: 1.1fr 0.9fr;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
-  background: url("innovadn_hero.svg") right no-repeat;
+  background: url("../src/innovadn_hero.svg") right no-repeat;
   background-size: auto 100%;
 }
 .hero-copy h1{
@@ -434,7 +434,7 @@ ul{ list-style: none; margin: 0; padding: 0; }
   grid-template-columns: 0.8fr 1.2fr;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
-  background: url("landing-bio-foto.png") left no-repeat;
+  background: url("../src/landing-bio-foto.png") left no-repeat;
   background-size: contain;
 }
 

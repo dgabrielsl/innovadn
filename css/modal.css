@@ -1,10 +1,3 @@
-/* ============================================================
-   project-modal — componente de caso de estudio
-   InnovADN · namespace: .project-modal
-   Reutiliza las variables de la landing (style.css) cuando
-   existen, con un valor de respaldo para poder usarse solo.
-   ============================================================ */
-
 .project-modal{
   --pm-bg: var(--bg, #0b0b0c);
   --pm-surface: var(--surface, #17171a);
@@ -126,6 +119,7 @@
   display: flex;
   flex-direction: column;
   gap: 2.25rem;
+  overflow-y: auto;
 }
 .project-modal__desc{
   color: var(--pm-text-muted);
@@ -287,9 +281,7 @@
   border-radius: 3px;
 }
 
-/* ============================================================
-   Responsive — reestructura, no solo reduce
-   ============================================================ */
+/* Responsive — reestructura */
 @media (max-width: 680px){
   .project-modal__dialog{
     width: 100%;
