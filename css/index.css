@@ -269,10 +269,11 @@ ul{ list-style: none; margin: 0; padding: 0; }
 }
 .accent-word{ color: var(--accent-bright); }
 .hero-lead{
-  padding: .55;
+  padding: .55em;
   margin-top: 1.4rem;
   max-width: 34rem;
-  background-color: rgba(0,0,0,.75);
+  background-color: rgba(0,0,0,.35);
+  border-radius: 5px;
   color: var(--text-muted);
   font-size: 1.05rem;
 }
@@ -374,12 +375,13 @@ ul{ list-style: none; margin: 0; padding: 0; }
 /* Projects */
 .projects{ padding-block: clamp(4rem, 8vw, 6rem); border-bottom: 1px solid var(--border); background: var(--bg-alt); }
 
-.projects-grid{
+.projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
 }
 .project-card{
+  min-width: 0;
   border: 1px solid var(--border);
   border-radius: var(--radius-m);
   padding: 1.75rem;
@@ -396,13 +398,14 @@ ul{ list-style: none; margin: 0; padding: 0; }
   color: var(--accent-bright);
   margin-bottom: .5rem;
 }
-.project-tag{
+.project-tag {
   font-family: var(--font-mono);
   font-size: .72rem;
   color: var(--text-faint);
 }
+
 .project-card h3{ font-size: 1.05rem; }
-.project-card p{ color: var(--text-muted); font-size: .92rem; }
+.project-card p{ color: var(--text-muted); font-size: .95rem;}
 .project-link{
   margin-top: .4rem;
   font-size: .88rem;
